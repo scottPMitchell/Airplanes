@@ -112,7 +112,7 @@ void Game::render()
 {
 	m_window.clear(sf::Color::White);
 	m_window.draw(m_welcomeMessage);
-	m_window.draw(m_logoSprite);
+	m_window.draw(m_bigPlaneSprite);
 	m_window.display();
 }
 
@@ -126,7 +126,7 @@ void Game::setupFontAndText()
 		std::cout << "problem loading arial black font" << std::endl;
 	}
 	m_welcomeMessage.setFont(m_ArialBlackfont);
-	m_welcomeMessage.setString("SFML Game");
+	m_welcomeMessage.setString("");
 	m_welcomeMessage.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
 	m_welcomeMessage.setPosition(40.0f, 40.0f);
 	m_welcomeMessage.setCharacterSize(80U);
@@ -137,15 +137,16 @@ void Game::setupFontAndText()
 }
 
 /// <summary>
-/// load the texture and setup the sprite for the logo
+/// load the texture and setup the sprite for the plane
 /// </summary>
 void Game::setupSprite()
 {
-	if (!m_logoTexture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
+	if (!m_bigPlaneTexture.loadFromFile("ASSETS\\IMAGES\\planes.png"))
 	{
 		// simple error message if previous call fails
-		std::cout << "problem loading logo" << std::endl;
+		std::cout << "problem loading plane" << std::endl;
 	}
-	m_logoSprite.setTexture(m_logoTexture);
-	m_logoSprite.setPosition(300.0f, 180.0f);
+	m_bigPlaneSprite.setTexture(m_bigPlaneTexture);
+	m_bigPlaneSprite.setPosition(300.0f, 180.0f);
+	m_bigPlaneSprite.setTextureRect(sf::IntRect{ 115, 11, 109, 93 });
 }

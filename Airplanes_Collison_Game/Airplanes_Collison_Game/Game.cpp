@@ -17,7 +17,7 @@
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ 800U, 600U, 32U }, "SFML Game" },
+	m_window{ sf::VideoMode{ WIDTH, HEIGHT, 32U }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
@@ -77,6 +77,10 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+		if (sf::Event::MouseButtonPressed == newEvent.type)
+		{
+			processMousePrss(newEvent);
+		}
 	}
 }
 
@@ -91,6 +95,11 @@ void Game::processKeys(sf::Event t_event)
 	{
 		m_exitGame = true;
 	}
+}
+
+void Game::processMousePrss(sf::Event t_event)
+{
+
 }
 
 /// <summary>
@@ -147,6 +156,12 @@ void Game::setupSprite()
 		std::cout << "problem loading plane" << std::endl;
 	}
 	m_bigPlaneSprite.setTexture(m_bigPlaneTexture);
-	m_bigPlaneSprite.setPosition(300.0f, 180.0f);
+	m_bigPlaneSprite.setPosition(m_bigPlaneLocation);
 	m_bigPlaneSprite.setTextureRect(sf::IntRect{ 115, 11, 109, 93 });
+}
+
+void Game::move()
+{
+	m_bigPlaneLocation += m_bigPlaneVelocity;
+	m_bigPlaneSprite.setPosition(m_bigPlaneLocation);
 }

@@ -79,7 +79,7 @@ void Game::processEvents()
 		}
 		if (sf::Event::MouseButtonPressed == newEvent.type)
 		{
-			processMousePrss(newEvent);
+			processMousePress(newEvent);
 		}
 	}
 }
@@ -97,9 +97,21 @@ void Game::processKeys(sf::Event t_event)
 	}
 }
 
-void Game::processMousePrss(sf::Event t_event)
+void Game::processMousePress(sf::Event t_event)
 {
+	m_firstClick.x = t_event.mouseButton.x;
+	m_firstClick.y = t_event.mouseButton.y;
+}
 
+void Game::processMouseButtonRelease(sf::Event t_event)
+{
+	m_secondClick.x = t_event.mouseButton.x;
+	m_secondClick.y = t_event.mouseButton.y;
+	sf::Vector2f velocity = m_secondClick - m_firstClick;
+
+
+
+	if (sf::Mouse::Left == t_event.MouseButton.button
 }
 
 /// <summary>

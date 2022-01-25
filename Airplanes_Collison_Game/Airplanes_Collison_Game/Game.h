@@ -28,7 +28,8 @@ private:
 
 	void processEvents();
 	void processKeys(sf::Event t_event);
-	void processMousePrss(sf::Event t_event);
+	void processMousePress(sf::Event t_event);
+	void processMouseButtonRelease(sf::Event t_event);
 	void update(sf::Time t_deltaTime);
 	void render();
 	
@@ -48,6 +49,7 @@ private:
 	sf::Vector2f m_bigPlaneLocation{ 300.0f,180.0f }; // location of large plane 
 	sf::Vector2f m_bigPlaneVelocity{ 1.0f, -1.0f }; // velocity of large plane
 	sf::Vector2f m_firstClick{ 0.0f,0.0f };
+	sf::Vector2f m_secondClick{ 0.0f,0.0f };
 
 	bool m_exitGame; // control exiting game
 
